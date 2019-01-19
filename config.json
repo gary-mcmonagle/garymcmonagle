@@ -1,0 +1,16 @@
+{
+  "spotifyTokenService":{
+    "credentials": {
+      "dev":{
+        "clientId": "09f8b44efaac4608a516791b16785e6e",
+        "clientSecret": "f67d1caff43f42a5ac14a6fc87e45845",
+        "redirectUri": "http://localhost:3000/spotifyTokenService/callback"
+      },
+      "prod":{
+        "clientId": "09f8b44efaac4608a516791b16785e6e",
+        "clientSecret": "f67d1caff43f42a5ac14a6fc87e45845",
+        "redirectUri": "http://garymcmonagle-env.jqnm7bnd8m.eu-west-1.elasticbeanstalk.com/spotifyTokenService/callback"
+      }
+    }
+  }
+}

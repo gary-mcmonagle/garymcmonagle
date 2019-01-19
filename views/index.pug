@@ -1,0 +1,11 @@
+header
+    script.
+        var clientId = '#{clientId}'
+        var redirectUri = '#{redirectUri}'
+    script(src='/javascripts/spotifyTokenService/createRedirect.js')
+input(type="text" id="tokenUser")
+br
+input(type="text" id="tokenPassword")
+br
+button(onclick="redirect()")
+  | Add
