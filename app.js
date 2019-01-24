@@ -5,9 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var spotifyTokenRefresher = require('./lib/spotifyTokenRefresher')
+var spotifyRouter = require('./routes/spotify');
 
 var app = express();
 
@@ -22,7 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/spotify', spotifyRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -39,20 +37,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-const initTimer = () => {
-  console.log("Starting token Refresher Timer")
-  setInterval( async () => {
-    try{
-      spotifyTokenRefresher.tokens = await spotifyTokenRefresher.refreshTokens(spotifyTokenRefresher.tokens);
-    }
-    catch(e){
-      console.log(e)
-    }
-  }, 1000 * 30);
-}
-
-initTimer()
-
 
 module.exports = app;
