@@ -15,13 +15,14 @@ router.get('/add', async (req, res) => {
 });
 
 
-router.get('/token/:id', async (req, res) => {
+router.get('/token', async (req, res) => {
+
+  const b64auth = (req.headers.authorization || '').split(' ')[1] || ''
+  const [login, password] = new Buffer(b64auth, 'base64').toString().split(':');
+
   //res.send("id is set to " + req.params.id);
-  let token = await sts.getAccessToken(req.params.id)
-  if(!token) res.status(404).send({ error: "boo :(" });
-  else{
-    res.status(200).json({accessToken: token})
-  }
+  let token = await sts.getAccessToken(login, password)
+  res.status(token.code).json(token.message);
 });
 
 router.get('/callback', async (req, res) => {
