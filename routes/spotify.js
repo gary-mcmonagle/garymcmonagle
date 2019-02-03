@@ -1,16 +1,19 @@
 var express = require('express');
 var router = express.Router();
+const fs = require('fs');
+var SpotifyTokenService = require('spotify_token_service')
 
-var SpotifyTokenService = require('../lib/spotify/SpotifyTokenService')
+let env = process.env.garymcmprod ? 'prod' : 'dev';
+let config = JSON.parse(fs.readFileSync('config.json', 'utf8')).spotifyTokenService.credentials[env];
 
-const sts = new SpotifyTokenService()
+
+const sts = new SpotifyTokenService(config.clientId, config.clientSecret, config.redirectUri)
 
 /* GET users listing. */
 router.get('/add', async (req, res) => {
-  const spotConfig = sts.getConfig()
+  console.log(await sts.createAuthUrl())
   res.render('spotifyTokenService/add', { 
-  clientId: spotConfig.clientId,
-  redirectUri: spotConfig.redirectUri
+  authUrl : await sts.createAuthUrl()
  })
 });
 

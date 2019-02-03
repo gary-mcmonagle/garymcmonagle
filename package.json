@@ -18,6 +18,7 @@
     "qs": "^6.6.0",
     "request": "^2.88.0",
     "spotify-web-api-node": "^4.0.0",
+    "spotify_token_service": "git+https://gary-mcmonagle:b7e636c2534cda265d4450a8d98911a6c6a6fab5@github.com/gary-mcmonagle/spotify_token_service.git",
     "sync-request": "^6.0.0"
   }
 }
