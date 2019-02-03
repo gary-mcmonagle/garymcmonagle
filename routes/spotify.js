@@ -29,7 +29,7 @@ router.get('/callback', async (req, res) => {
   if(req.query.code && req.query.state){
     const spl = req.query.state.split('&')
     sts.addToken(req.query.code, spl[0].split(':')[1], spl[1].split(':')[1])
-    res.send(spl);
+    res.send('Token Added');
   }
 });
 
